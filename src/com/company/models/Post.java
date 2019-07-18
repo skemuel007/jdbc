@@ -5,7 +5,7 @@ public class Post {
     // member variables
     protected int postId;
     protected String postTime;
-    protected String postUsername;
+    protected Users user;
     protected String postType;
     protected String postCaption;
     protected String postImage;
@@ -27,14 +27,6 @@ public class Post {
 
     public void setPostTime(String postTime) {
         this.postTime = postTime;
-    }
-
-    public String getPostUsername() {
-        return postUsername;
-    }
-
-    public void setPostUsername(String postUsername) {
-        this.postUsername = postUsername;
     }
 
     public String getPostType() {
@@ -74,17 +66,17 @@ public class Post {
         this(0, null, null, null, null, null, null);
     }
 
-    public Post(int id, String time, String username, String type,
+    public Post(int id, String time, Users user, String type,
                 String caption, String image, String text) {
-        this(time, username, type, caption, image, text);
+        this(time, user, type, caption, image, text);
         this.postId = id;
 
     }
 
-    public Post(String time, String username, String type,
+    public Post(String time, Users user, String type,
                 String caption, String image, String text) {
         this.postTime = time;
-        this.postUsername = username;
+        this.user = user;
         this.postType = type;
         this.postCaption = caption;
         this.postImage = image;
@@ -93,6 +85,14 @@ public class Post {
 
     @Override
     public String toString() {
-        return String.format("Username: %s, Text: %s", this.getPostUsername(), this.getPostText());
+        return String.format("Username: %s, Text: %s", this.getUser().getUsername(), this.getPostText());
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

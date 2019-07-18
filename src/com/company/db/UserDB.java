@@ -24,7 +24,7 @@ public class UserDB {
         try(PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery()){
             while(rs.next()) {
-                int userId = rs.getInt("UserId");
+                int userId = rs.getInt("UserID");
                 String username = rs.getString("Username");
                 String gender = rs.getString("Gender");
                 int age = rs.getInt("Age");
@@ -58,6 +58,8 @@ public class UserDB {
                 String relationshipStatus = rs.getString("RelationshipStatus");
                 String levelOfEducation = rs.getString("LevelOfEduction");
 
+                rs.close();
+
                 Users user = new Users(userId, username, null, gender, age, userType, onlineStatus, relationshipStatus, levelOfEducation);
 
                 return user;
@@ -77,13 +79,15 @@ public class UserDB {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if( rs.next()) {
-                int userId = rs.getInt("UserId");
+                int userId = rs.getInt("UserID");
                 String gender = rs.getString("Gender");
                 int age = rs.getInt("Age");
                 String userType = rs.getString("UserType");
                 int onlineStatus = rs.getInt("OnlineStatus");
                 String relationshipStatus = rs.getString("RelationshipStatus");
                 String levelOfEducation = rs.getString("LevelOfEduction");
+
+                rs.close();
 
                 Users user = new Users(userId, username, null, gender, age, userType, onlineStatus, relationshipStatus, levelOfEducation);
 
